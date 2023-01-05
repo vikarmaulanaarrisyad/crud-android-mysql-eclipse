@@ -26,12 +26,12 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f080006;
         public static final int alamat=0x7f080003;
-        public static final int button1=0x7f080005;
         public static final int edit=0x7f080007;
         public static final int hapus=0x7f080008;
         public static final int listView1=0x7f080001;
         public static final int nama=0x7f080002;
         public static final int nomor_handphone=0x7f080004;
+        public static final int simpan_data=0x7f080005;
         public static final int textView1=0x7f080000;
     }
     public static final class layout {

@@ -66,6 +66,8 @@
            android:layout_height="wrap_content"
            android:layout_alignParentLeft="true"
            android:layout_alignParentTop="true"
+           android:autoText="false"
+           android:inputType="phone"
            android:background="#ffffff"
            android:ems="10"
            android:fontFamily="Poppins"
@@ -82,7 +84,7 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/simpan_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

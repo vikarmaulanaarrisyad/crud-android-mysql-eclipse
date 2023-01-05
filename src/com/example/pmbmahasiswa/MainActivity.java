@@ -2,12 +2,23 @@ package com.example.pmbmahasiswa;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.pmbmahasiswa.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +28,37 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.DownloadManager.Request;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 public class MainActivity extends Activity {
 	
 	ListView listView;
-	Adaptor adaptor;
 	ArrayList<GetData> model;
+	Adaptor adaptor;
 	
 
     @Override
@@ -31,9 +68,6 @@ public class MainActivity extends Activity {
         
         listView = (ListView) findViewById(R.id.listView1);
         load_data();
-        Adaptor adaptor = new Adaptor(getApplicationContext(), model);
-        
-        listView.setAdapter(adaptor);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	
         	// Disini Masih Errors, karena pluggin tidak ada
@@ -63,11 +97,47 @@ public class MainActivity extends Activity {
     }
            
     void load_data() {
-    	
-    	model = new ArrayList<GetData>();
-    	for (int i = 0; i <= 30; i++) {
-    		model.add(new GetData("Vikar Maulana " +i, "Bojong", "0878"));
-		}
+    	String url = new Configurasi().baseUrl()+"tampil_data.php";
+    
+    	StringRequest request = new StringRequest(Method.GET, url, new Response.Listener<String>() {
+
+			@Override
+			public void onResponse(String response) {
+				
+				try {
+					JSONObject jsonObject = new JSONObject(response);
+					
+					JSONArray jsonArray = jsonObject.getJSONArray("data");
+					model = new ArrayList<GetData> ();
+					for (int i = 0; i <= jsonArray.length(); i++) {
+						
+						JSONObject getData = jsonArray.getJSONObject(i);
+						model.add(new GetData(
+								getData.getString("nama"), 
+								getData.getString("alamat"),  
+								getData.getString("nomor_handphone") 
+							));	
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					Log.e("ERROR", e.getMessage());
+				}
+				
+		        adaptor = new Adaptor(MainActivity.this, model);
+		        listView.setAdapter(adaptor);
+			}
+    		
+		}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				// TODO Auto-generated method stub
+				Toast.makeText(MainActivity.this, "Terjadi kesalahan data", Toast.LENGTH_SHORT).show();	
+			}
+			
+		});
+		RequestQueue requestQueue = Volley.newRequestQueue(this);
+		requestQueue.add(request);
     }
 
 
