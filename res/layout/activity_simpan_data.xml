@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+ <TextView
+     android:id="@+id/textView1"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="50dp"
+     android:layout_marginRight="18dp"
+     android:layout_marginTop="2dp"
+     android:fontFamily="poppins"
+     android:padding="5dp"
+     android:text="Tambah Data"
+     android:textAlignment="center"
+     android:textSize="18sp"
+     android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFDFDFDF"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:ems="10"
+            android:fontFamily="Poppins"
+            android:hint="Masukkan nama"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFDFDFDF"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:ems="10"
+            android:fontFamily="Poppins"
+            android:hint="Alamat"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFDFDFDF"
+        android:padding="10dp" >
+
+       <EditText
+           android:id="@+id/nomor_handphone"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:background="#ffffff"
+           android:ems="10"
+           android:fontFamily="Poppins"
+           android:hint="No Hp"
+           android:textSize="18sp" >
+
+           <requestFocus />
+       </EditText>
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:background="#0f45ea"
+            android:text="Simpan Data"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>
